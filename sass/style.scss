@@ -55,7 +55,7 @@ nav {
 					content: "\25BC";
 					display: block;
 					color: #000;
-					border: 1px solid #fff;
+					border: 1px solid #000;
 					padding: 2px;
 				}
 				
@@ -82,7 +82,7 @@ nav {
 				
 				.children {
 					position: absolute;
-					top: 20px;
+					top: 30px;
 					left: 0;
 					background: green;
 					width: 0;
@@ -123,6 +123,7 @@ nav {
 							overflow: hidden;
 							.children {
 								position: relative;
+								top: 15px;
 								margin-left: -20px;//based on submenu ul
 								background: red;
 								padding-top: 10px;
@@ -226,6 +227,7 @@ nav {
 						
 						&:after {
 							color: #fff;
+							border-color: #fff;
 							position: absolute;
 							top: 50%;
 							right: 0;
