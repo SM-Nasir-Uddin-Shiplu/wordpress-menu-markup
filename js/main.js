@@ -11,44 +11,33 @@ function itemOnClick(item){
 	item.children[0].onclick = function() {
 		//console.log(item.nodeName + ' ' + item.classList);
 		
-		//WHEN TOPMENU ITEM CLICKED REMOVE .current_page_parent FROM IT'S SIBLINGS 
+		const currentPageItem = document.getElementsByClassName('current_page_item');
+		//console.log(currentPageItem);
+		for(let i = 0; i< currentPageItem.length; i++){
+			currentPageItem[i].classList.remove('current_page_item');
+		}
+		
 		const curentItemParent = document.getElementsByClassName('current_page_parent');
 		//console.log(curentItemParent);
 		for(let i = 0; i < curentItemParent.length; i++){
 			curentItemParent[i].classList.remove('current_page_parent');
 		}
 		
-		
-		//WHEN SUBMENU ITEM CLICKED REMOVE .current_page_item FROM SUBMENU ITEM SIBLINGS
+		//WHEN SUBMENU ITEM TOGGLE BUTTON CLICKED, KEEP OPEN IT'S PARENT TOGGLE BUTTON
 		const childrenArray = document.getElementsByClassName('children');
 		for(let i = 0; i < childrenArray.length; i++){
 			//console.log(childrenArray[i])
-			
 			//CLOSE OPEN SUBMENU
 			childrenArray[i].classList.remove('toggled-on');
 			childrenArray[i].previousElementSibling.classList.remove('toggle-on');
 			childrenArray[i].previousElementSibling.setAttribute('aria-expanded', 'false');
-			
-			const childrenChildItems = childrenArray[i].children;
-			const newArrays = [];
-			for(let j = 0; j < childrenChildItems.length; j++ ){
-				//console.log(childrenChildItems[j])
-				childrenChildItems[j].classList.remove('current_page_item')
-			}
 		}
 		
+		//WHEN SUBMENU ITEM CLICKED, ADD .current_page_parent TO IT'S PARENT
 		const siblings =  getAllSiblings(this.parentElement);
 		//console.log(siblings)
 		for( let i = 0; i < siblings.length; i++ ) {
-			
-			siblings[i].classList.remove('current_page_item');
 			siblings[i].parentElement.parentElement.classList.add('current_page_parent');
-			
-			//WHEN SUBMENU UL LI ITEM CLICKED, REMOVE .current_page_item FROM  TOPMENU UL LI
-			const topUlItems = getAllSiblings(siblings[i].parentElement.parentElement);
-			for( let j = 0; j < topUlItems.length; j++ ){
-				topUlItems[j].classList.remove('current_page_item');
-			}
 		}
 		
 		this.parentElement.classList.add('current_page_item');
