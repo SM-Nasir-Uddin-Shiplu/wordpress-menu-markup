@@ -37,7 +37,15 @@ function itemOnClick(item){
 		const siblings =  getAllSiblings(this.parentElement);
 		//console.log(siblings)
 		for( let i = 0; i < siblings.length; i++ ) {
-			siblings[i].parentElement.parentElement.classList.add('current_page_parent');
+			if(siblings[i].parentElement.parentElement.nodeName == 'LI'
+			&& siblings[i].parentElement.parentElement.classList == 'page_item_has_children'){
+				siblings[i].parentElement.parentElement.classList.add('current_page_parent');
+			}
+			
+			if(siblings[i].parentElement.parentElement.parentElement.parentElement.nodeName == 'LI' 
+			&& siblings[i].parentElement.parentElement.parentElement.parentElement.classList == 'page_item_has_children'){
+				siblings[i].parentElement.parentElement.parentElement.parentElement.classList.add('current_page_parent');
+			}
 		}
 		
 		this.parentElement.classList.add('current_page_item');
